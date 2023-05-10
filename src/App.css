@@ -1,0 +1,6 @@
+.main {
+  width: 500px;
+  height: 200px;
+  background-color: lightblue;
+  overflow: auto;
+}

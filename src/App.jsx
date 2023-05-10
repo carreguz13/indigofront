@@ -1,25 +1,48 @@
+import { useState } from "react";
 import "./App.css";
 
 function App() {
-  const array = [
-    { id: 1, nombre: "lorena", edad: 20, grupo: "ballet" },
-    { id: 2, nombre: "carla", edad: 14, grupo: "folclor" },
-    { id: 3, nombre: "perla", edad: 17, grupo: "ballet" },
+  const [select, setselect] = useState("folklore");
+
+  const folklore = [
+    { id: 1, nombre: "lorena", edad: 20, grupo: "folklore" },
+    { id: 2, nombre: "carla", edad: 14, grupo: "folklore" },
+    { id: 3, nombre: "perla", edad: 17, grupo: "folklore" },
+  ];
+
+  const bellyDance = [
+    { id: 1, nombre: "aranza", edad: 20, grupo: "bellyDance" },
+    { id: 2, nombre: "carla", edad: 45, grupo: "bellyDance" },
+    { id: 3, nombre: "señora", edad: 34, grupo: "bellyDance" },
+    { id: 4, nombre: "raziel", edad: 23, grupo: "bellyDance" },
+  ];
+
+  const ballet = [
+    { id: 1, nombre: "diana", edad: 45, grupo: "ballet" },
+    { id: 2, nombre: "leslie", edad: 34, grupo: "ballet" },
+    { id: 3, nombre: "sofia", edad: 23, grupo: "ballet" },
+    { id: 4, nombre: "jimena", edad: 25, grupo: "ballet" },
+    { id: 5, nombre: "rosario", edad: 15, grupo: "ballet" },
   ];
 
   return (
     <div className="main">
       <div>
         <div className="search-bar">
-          <input type="search" />
+          <input type="search" placeholder="Buscar" />
           <button>registrar nuevo alumno</button>
         </div>
-        <select name="select">
-          <option value="value1" selected>
-            Value 1
+        <select
+          value={select}
+          onChange={(e) => {
+            setselect(e.target.value);
+          }}
+        >
+          <option value="folklore" selected>
+            folklore
           </option>
-          <option value="value2">Value 2</option>
-          <option value="value3">Value 3</option>
+          <option value="bellyDance">bellyDance</option>
+          <option value="ballet">ballet</option>
         </select>
         <table>
           <thead>
@@ -32,21 +55,64 @@ function App() {
             </tr>
           </thead>
           <tbody>
-            {array.map((lol) => (
-              <tr>
-                <td>{lol.id}</td>
-                <td>{lol.nombre}</td>
-                <td>{lol.edad}</td>
-                <td>{lol.grupo}</td>
-                <td>
-                  <button>Enviar link de pago</button>
-                </td>
-                <td>
-                  <button>editar</button>
-                  <button>eliminar</button>
-                </td>
-              </tr>
-            ))}
+            {select === "folklore" && (
+              <>
+                {folklore.map((lol) => (
+                  <tr>
+                    <td>{lol.id}</td>
+                    <td>{lol.nombre}</td>
+                    <td>{lol.edad}</td>
+                    <td>{lol.grupo}</td>
+                    <td>
+                      <button>Enviar link de pago</button>
+                    </td>
+                    <td>
+                      <button>editar</button>
+                      <button>eliminar</button>
+                    </td>
+                  </tr>
+                ))}
+              </>
+            )}
+            {select === "bellyDance" && (
+              <>
+                {bellyDance.map((lol) => (
+                  <tr>
+                    <td>{lol.id}</td>
+                    <td>{lol.nombre}</td>
+                    <td>{lol.edad}</td>
+                    <td>{lol.grupo}</td>
+                    <td>
+                      <button>Enviar link de pago</button>
+                    </td>
+                    <td>
+                      <button>editar</button>
+                      <button>eliminar</button>
+                    </td>
+                  </tr>
+                ))}
+              </>
+            )}
+
+            {select === "ballet" && (
+              <>
+                {ballet.map((lol) => (
+                  <tr>
+                    <td>{lol.id}</td>
+                    <td>{lol.nombre}</td>
+                    <td>{lol.edad}</td>
+                    <td>{lol.grupo}</td>
+                    <td>
+                      <button>Enviar link de pago</button>
+                    </td>
+                    <td>
+                      <button>editar</button>
+                      <button>eliminar</button>
+                    </td>
+                  </tr>
+                ))}
+              </>
+            )}
           </tbody>
         </table>
       </div>
