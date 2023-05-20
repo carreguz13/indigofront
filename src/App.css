@@ -1,6 +1,63 @@
 .main {
-  width: 500px;
-  height: 200px;
-  background-color: lightblue;
-  overflow: auto;
+  width: 900px;
+  height: auto;
+  background-color: rgb(25, 211, 224);
+  padding: 30px;
+  border-radius: 20px;
+}
+.lola {
+  background-color: red;
+  width: auto;
+  height: auto;
+}
+
+.form-new {
+  display: flex;
+  justify-content: center;
+
+  flex-direction: column;
+  width: 30%;
+  height: auto;
+  padding: 10px 30px 30px 30px;
+  background-color: rgb(15, 152, 170);
+  border-radius: 20px;
+}
+
+.form-new div {
+  display: flex;
+  justify-content: end;
+}
+
+.form-new h1 {
+  font-size: 20px;
+  margin: 0px;
+  color: #ffff;
+}
+
+.form-new label {
+  color: #ffff;
+  padding-bottom: 5px;
+  padding-top: 10px;
+  font-weight: 700;
+}
+
+.form-new h1:hover {
+  cursor: pointer;
+}
+
+.form-new select {
+  margin-bottom: 20px;
+}
+
+.main-newRegister {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  background-color: rgb(0 0 0 / 71%);
+  backdrop-filter: blur(2px);
+  height: 100vh;
 }

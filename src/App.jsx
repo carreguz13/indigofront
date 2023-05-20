@@ -1,36 +1,42 @@
 import { useState } from "react";
 import "./App.css";
+import AddForm from "./AddForm";
 
 function App() {
+  const [registro, setregistro] = useState(false);
   const [select, setselect] = useState("folklore");
 
   const folklore = [
-    { id: 1, nombre: "lorena", edad: 20, grupo: "folklore" },
-    { id: 2, nombre: "carla", edad: 14, grupo: "folklore" },
-    { id: 3, nombre: "perla", edad: 17, grupo: "folklore" },
+    { nombre: "lorena", edad: 20, grupo: "folklore" },
+    { nombre: "carla", edad: 14, grupo: "folklore" },
+    { nombre: "perla", edad: 17, grupo: "folklore" },
   ];
 
   const bellyDance = [
-    { id: 1, nombre: "aranza", edad: 20, grupo: "bellyDance" },
-    { id: 2, nombre: "carla", edad: 45, grupo: "bellyDance" },
-    { id: 3, nombre: "señora", edad: 34, grupo: "bellyDance" },
-    { id: 4, nombre: "raziel", edad: 23, grupo: "bellyDance" },
+    { nombre: "aranza", edad: 20, grupo: "bellyDance" },
+    { nombre: "carla", edad: 45, grupo: "bellyDance" },
+    { nombre: "señora", edad: 34, grupo: "bellyDance" },
+    { nombre: "raziel", edad: 23, grupo: "bellyDance" },
   ];
 
   const ballet = [
-    { id: 1, nombre: "diana", edad: 45, grupo: "ballet" },
-    { id: 2, nombre: "leslie", edad: 34, grupo: "ballet" },
-    { id: 3, nombre: "sofia", edad: 23, grupo: "ballet" },
-    { id: 4, nombre: "jimena", edad: 25, grupo: "ballet" },
-    { id: 5, nombre: "rosario", edad: 15, grupo: "ballet" },
+    { nombre: "diana", edad: 45, grupo: "ballet" },
+    { nombre: "leslie", edad: 34, grupo: "ballet" },
+    { nombre: "sofia", edad: 23, grupo: "ballet" },
+    { nombre: "jimena", edad: 25, grupo: "ballet" },
+    { nombre: "rosario", edad: 15, grupo: "ballet" },
   ];
+
+  function abrirRegistro() {
+    setregistro(true);
+  }
 
   return (
     <div className="main">
       <div>
         <div className="search-bar">
           <input type="search" placeholder="Buscar" />
-          <button>registrar nuevo alumno</button>
+          <button onClick={abrirRegistro}>registrar nuevo alumno</button>
         </div>
         <select
           value={select}
@@ -57,9 +63,9 @@ function App() {
           <tbody>
             {select === "folklore" && (
               <>
-                {folklore.map((lol) => (
+                {folklore.map((lol, index) => (
                   <tr>
-                    <td>{lol.id}</td>
+                    <td>{index + 1}</td>
                     <td>{lol.nombre}</td>
                     <td>{lol.edad}</td>
                     <td>{lol.grupo}</td>
@@ -76,9 +82,9 @@ function App() {
             )}
             {select === "bellyDance" && (
               <>
-                {bellyDance.map((lol) => (
+                {bellyDance.map((lol, index) => (
                   <tr>
-                    <td>{lol.id}</td>
+                    <td>{index + 1}</td>
                     <td>{lol.nombre}</td>
                     <td>{lol.edad}</td>
                     <td>{lol.grupo}</td>
@@ -96,9 +102,9 @@ function App() {
 
             {select === "ballet" && (
               <>
-                {ballet.map((lol) => (
+                {ballet.map((lol, index) => (
                   <tr>
-                    <td>{lol.id}</td>
+                    <td>{index + 1}</td>
                     <td>{lol.nombre}</td>
                     <td>{lol.edad}</td>
                     <td>{lol.grupo}</td>
@@ -116,6 +122,7 @@ function App() {
           </tbody>
         </table>
       </div>
+      {registro && <AddForm setregistro={setregistro} />}
     </div>
   );
 }
