@@ -61,3 +61,16 @@
   backdrop-filter: blur(2px);
   height: 100vh;
 }
+
+.main-newEditar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  background-color: rgba(180, 25, 25, 0.71);
+  backdrop-filter: blur(2px);
+  height: 100vh;
+}

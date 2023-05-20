@@ -1,10 +1,12 @@
 import { useState } from "react";
 import "./App.css";
 import AddForm from "./AddForm";
+import EditForm from "./EditForm,";
 
 function App() {
   const [registro, setregistro] = useState(false);
   const [select, setselect] = useState("folklore");
+  const [editar, seteditar] = useState(false);
 
   const folklore = [
     { nombre: "lorena", edad: 20, grupo: "folklore" },
@@ -29,6 +31,10 @@ function App() {
 
   function abrirRegistro() {
     setregistro(true);
+  }
+
+  function EditarRegistro() {
+    seteditar(true);
   }
 
   return (
@@ -73,7 +79,7 @@ function App() {
                       <button>Enviar link de pago</button>
                     </td>
                     <td>
-                      <button>editar</button>
+                      <button onClick={EditarRegistro}>editar</button>
                       <button>eliminar</button>
                     </td>
                   </tr>
@@ -92,7 +98,7 @@ function App() {
                       <button>Enviar link de pago</button>
                     </td>
                     <td>
-                      <button>editar</button>
+                      <button onClick={EditarRegistro}>editar</button>
                       <button>eliminar</button>
                     </td>
                   </tr>
@@ -112,7 +118,7 @@ function App() {
                       <button>Enviar link de pago</button>
                     </td>
                     <td>
-                      <button>editar</button>
+                      <button onClick={EditarRegistro}>editar</button>
                       <button>eliminar</button>
                     </td>
                   </tr>
@@ -123,6 +129,7 @@ function App() {
         </table>
       </div>
       {registro && <AddForm setregistro={setregistro} />}
+      {editar && <EditForm seteditar={seteditar} />}
     </div>
   );
 }
