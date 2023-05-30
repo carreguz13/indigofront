@@ -42,7 +42,7 @@ function App() {
       <div>
         <div className="search-bar">
           <input type="search" placeholder="Buscar" />
-          <button onClick={abrirRegistro}>registrar nuevo alumno</button>
+          <button onClick={abrirRegistro}>registrar nuevo alumnoo</button>
         </div>
         <select
           value={select}
