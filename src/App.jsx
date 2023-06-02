@@ -1,33 +1,49 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import AddForm from "./AddForm";
 import EditForm from "./EditForm,";
+import axios from "axios";
 
 function App() {
   const [registro, setregistro] = useState(false);
-  const [select, setselect] = useState("folklore");
+  const [select, setselect] = useState("bellyDance");
   const [editar, seteditar] = useState(false);
+  const [bellydance, setbellydance] = useState([]);
+  const [folklore, setfolklore] = useState([]);
+  const [ballet, setballet] = useState([]);
 
-  const folklore = [
-    { nombre: "lorena", edad: 20, grupo: "folklore" },
-    { nombre: "carla", edad: 14, grupo: "folklore" },
-    { nombre: "perla", edad: 17, grupo: "folklore" },
-  ];
+  async function getDataBellydance() {
+    try {
+      const res = await axios.get("http://localhost:3001/bellydance");
+      setbellydance(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
-  const bellyDance = [
-    { nombre: "aranza", edad: 20, grupo: "bellyDance" },
-    { nombre: "carla", edad: 45, grupo: "bellyDance" },
-    { nombre: "señora", edad: 34, grupo: "bellyDance" },
-    { nombre: "raziel", edad: 23, grupo: "bellyDance" },
-  ];
+  async function getDatafolklore() {
+    try {
+      const res = await axios.get("http://localhost:3001/folklore");
+      setfolklore(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
-  const ballet = [
-    { nombre: "diana", edad: 45, grupo: "ballet" },
-    { nombre: "leslie", edad: 34, grupo: "ballet" },
-    { nombre: "sofia", edad: 23, grupo: "ballet" },
-    { nombre: "jimena", edad: 25, grupo: "ballet" },
-    { nombre: "rosario", edad: 15, grupo: "ballet" },
-  ];
+  async function getDataballet() {
+    try {
+      const res = await axios.get("http://localhost:3001/ballet");
+      setballet(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  useEffect(() => {
+    getDataBellydance();
+    getDatafolklore();
+    getDataballet();
+  }, []);
 
   function abrirRegistro() {
     setregistro(true);
@@ -50,10 +66,8 @@ function App() {
             setselect(e.target.value);
           }}
         >
-          <option value="folklore" selected>
-            folklore
-          </option>
           <option value="bellyDance">bellyDance</option>
+          <option value="folklore">folklore</option>
           <option value="ballet">ballet</option>
         </select>
         <table>
@@ -67,33 +81,14 @@ function App() {
             </tr>
           </thead>
           <tbody>
-            {select === "folklore" && (
-              <>
-                {folklore.map((lol, index) => (
-                  <tr>
-                    <td>{index + 1}</td>
-                    <td>{lol.nombre}</td>
-                    <td>{lol.edad}</td>
-                    <td>{lol.grupo}</td>
-                    <td>
-                      <button>Enviar link de pago</button>
-                    </td>
-                    <td>
-                      <button onClick={EditarRegistro}>editar</button>
-                      <button>eliminar</button>
-                    </td>
-                  </tr>
-                ))}
-              </>
-            )}
             {select === "bellyDance" && (
               <>
-                {bellyDance.map((lol, index) => (
-                  <tr>
-                    <td>{index + 1}</td>
-                    <td>{lol.nombre}</td>
-                    <td>{lol.edad}</td>
-                    <td>{lol.grupo}</td>
+                {bellydance.map((users) => (
+                  <tr key={users.id}>
+                    <td>{users.id}</td>
+                    <td>{users.nombre}</td>
+                    <td>{users.edad}</td>
+                    <td>{users.grupo}</td>
                     <td>
                       <button>Enviar link de pago</button>
                     </td>
@@ -105,15 +100,33 @@ function App() {
                 ))}
               </>
             )}
-
+            {select === "folklore" && (
+              <>
+                {folklore.map((users) => (
+                  <tr key={users.id}>
+                    <td>{users.id}</td>
+                    <td>{users.nombre}</td>
+                    <td>{users.edad}</td>
+                    <td>{users.grupo}</td>
+                    <td>
+                      <button>Enviar link de pago</button>
+                    </td>
+                    <td>
+                      <button onClick={EditarRegistro}>editar</button>
+                      <button>eliminar</button>
+                    </td>
+                  </tr>
+                ))}
+              </>
+            )}
             {select === "ballet" && (
               <>
-                {ballet.map((lol, index) => (
-                  <tr>
-                    <td>{index + 1}</td>
-                    <td>{lol.nombre}</td>
-                    <td>{lol.edad}</td>
-                    <td>{lol.grupo}</td>
+                {ballet.map((users) => (
+                  <tr key={users.id}>
+                    <td>{users.id}</td>
+                    <td>{users.nombre}</td>
+                    <td>{users.edad}</td>
+                    <td>{users.grupo}</td>
                     <td>
                       <button>Enviar link de pago</button>
                     </td>
