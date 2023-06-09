@@ -52,6 +52,33 @@ function App() {
   function EditarRegistro() {
     seteditar(true);
   }
+  // funcion que elimina a usuario de bellydance
+  async function handleDeleteBellydance(id) {
+    try {
+      await axios.delete("http://localhost:3001/bellydance/" + id);
+      window.location.reload();
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async function handleDeleteFolklore(id) {
+    try {
+      await axios.delete("http://localhost:3001/folklore/" + id);
+      window.location.reload();
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async function handleDeleteBallet(id) {
+    try {
+      await axios.delete("http://localhost:3001/ballet/" + id);
+      window.location.reload();
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   return (
     <div className="main">
@@ -94,7 +121,9 @@ function App() {
                     </td>
                     <td>
                       <button onClick={EditarRegistro}>editar</button>
-                      <button>eliminar</button>
+                      <button onClick={() => handleDeleteBellydance(users.id)}>
+                        eliminar
+                      </button>
                     </td>
                   </tr>
                 ))}
@@ -113,7 +142,9 @@ function App() {
                     </td>
                     <td>
                       <button onClick={EditarRegistro}>editar</button>
-                      <button>eliminar</button>
+                      <button onClick={() => handleDeleteFolklore(users.id)}>
+                        eliminar
+                      </button>
                     </td>
                   </tr>
                 ))}
@@ -132,7 +163,9 @@ function App() {
                     </td>
                     <td>
                       <button onClick={EditarRegistro}>editar</button>
-                      <button>eliminar</button>
+                      <button onClick={() => handleDeleteBallet(users.id)}>
+                        eliminar
+                      </button>
                     </td>
                   </tr>
                 ))}
