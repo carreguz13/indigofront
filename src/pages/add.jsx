@@ -1,42 +1,35 @@
 import { useState } from "react";
 import React from "react";
-import "./App.css";
+import "../App.css";
 import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 
-function AddForm({ setregistro }) {
+function Add() {
+  const navigate = useNavigate();
   const [inputs, setinputs] = useState({
     nombre: "",
     edad: "",
     grupo: "",
   });
 
-  function cerrarRegistro() {
-    setregistro(false);
-  }
-
   function change(e) {
     setinputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }
-
-  console.log(inputs);
 
   async function registrar(e) {
     e.preventDefault();
     try {
       if (inputs.grupo === "bellyDance") {
         await axios.post("http://localhost:3001/bellydance", inputs);
-        setregistro(false);
-        window.location.reload();
-      }
-      if (inputs.grupo === "folklore") {
+        navigate("/");
+      } else if (inputs.grupo === "folklore") {
         await axios.post("http://localhost:3001/folklore", inputs);
-        setregistro(false);
-        window.location.reload();
-      }
-      if (inputs.grupo === "ballet") {
+        navigate("/");
+      } else if (inputs.grupo === "ballet") {
         await axios.post("http://localhost:3001/ballet", inputs);
-        setregistro(false);
-        window.location.reload();
+        navigate("/");
+      } else {
+        alert("seleciona");
       }
     } catch (err) {
       console.log(err);
@@ -47,7 +40,9 @@ function AddForm({ setregistro }) {
     <div className="main-newRegister">
       <form className="form-new">
         <div>
-          <h1 onClick={cerrarRegistro}>X</h1>
+          <h1>
+            <Link to={"/"}>X</Link>
+          </h1>
         </div>
         <label>nombre</label>
         <input
@@ -60,7 +55,8 @@ function AddForm({ setregistro }) {
         <label>edad</label>
         <input type="number" placeholder="edad" onChange={change} name="edad" />
         <label>grupo</label>
-        <select placeholder="grupo" onChange={change} name="grupo">
+        <select onChange={change} name="grupo">
+          <option>Selecciona grupo</option>
           <option value="bellyDance">bellyDance</option>
           <option value="folklore">folklore</option>
           <option value="ballet">ballet</option>
@@ -71,4 +67,4 @@ function AddForm({ setregistro }) {
   );
 }
 
-export default AddForm;
+export default Add;
