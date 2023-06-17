@@ -8,7 +8,9 @@ function Add() {
   const navigate = useNavigate();
   const [inputs, setinputs] = useState({
     nombre: "",
+    apellidos: "",
     edad: "",
+    fecha_de_nacimiento: "",
     grupo: "",
   });
 

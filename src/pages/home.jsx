@@ -62,15 +62,6 @@ function Home() {
     }
   }
 
-  async function handleDeleteBallet(id) {
-    try {
-      await axios.delete("http://localhost:3001/ballet/" + id);
-      window.location.reload();
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
   return (
     <div className="main">
       <div>
@@ -87,16 +78,20 @@ function Home() {
         >
           <option value="bellyDance">bellyDance</option>
           <option value="folklore">folklore</option>
-          <option value="ballet">ballet</option>
         </select>
-        <table>
+        <table className="tabla">
           <thead>
             <tr>
               <th>Id</th>
               <th>Nombre</th>
+              <th>Apellidos</th>
               <th>Edad</th>
+              <th>Fecha de nacimiento</th>
+              <th>Dirección</th>
               <th>Grupo</th>
+              <th>Fecha de registro</th>
               <th>Pago</th>
+              <th>Editar/Elimianr</th>
             </tr>
           </thead>
           <tbody>
@@ -106,8 +101,12 @@ function Home() {
                   <tr key={users.id}>
                     <td>{users.id}</td>
                     <td>{users.nombre}</td>
+                    <td>{users.apellidos}</td>
                     <td>{users.edad}</td>
+                    <td>{users.fecha_de_nacimiento}</td>
+                    <td>{users.direccion}</td>
                     <td>{users.grupo}</td>
+                    <td>{users.fecha_de_registro}</td>
                     <td>
                       <button>Enviar link de pago</button>
                     </td>
@@ -139,30 +138,6 @@ function Home() {
                         <Link to={"/edit"}>Editar alumno</Link>
                       </button>
                       <button onClick={() => handleDeleteFolklore(users.id)}>
-                        eliminar
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </>
-            )}
-
-            {select === "ballet" && (
-              <>
-                {ballet.map((users) => (
-                  <tr key={users.id}>
-                    <td>{users.id}</td>
-                    <td>{users.nombre}</td>
-                    <td>{users.edad}</td>
-                    <td>{users.grupo}</td>
-                    <td>
-                      <button>Enviar link de pago</button>
-                    </td>
-                    <td>
-                      <button>
-                        <Link to={"/edit"}>Editar alumno</Link>
-                      </button>
-                      <button onClick={() => handleDeleteBallet(users.id)}>
                         eliminar
                       </button>
                     </td>
