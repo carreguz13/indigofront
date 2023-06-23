@@ -33,6 +33,10 @@ body {
   border-radius: 20px;
 }
 
+.editbtn {
+  background-color: orange;
+}
+
 .form-new div {
   display: flex;
   justify-content: end;

@@ -8,7 +8,6 @@ function Home() {
   const [select, setselect] = useState("bellyDance");
   const [bellydance, setbellydance] = useState([]);
   const [folklore, setfolklore] = useState([]);
-  const [ballet, setballet] = useState([]);
 
   async function getDataBellydance() {
     try {
@@ -28,19 +27,9 @@ function Home() {
     }
   }
 
-  async function getDataballet() {
-    try {
-      const res = await axios.get("http://localhost:3001/ballet");
-      setballet(res.data);
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
   useEffect(() => {
     getDataBellydance();
     getDatafolklore();
-    getDataballet();
   }, []);
 
   // funcion que elimina a usuario de bellydance
@@ -84,7 +73,7 @@ function Home() {
             <tr>
               <th>Id</th>
               <th>Nombre</th>
-              <th>Apellidos</th>
+              <th>Apellido</th>
               <th>Edad</th>
               <th>Fecha de nacimiento</th>
               <th>Dirección</th>
@@ -101,18 +90,22 @@ function Home() {
                   <tr key={users.id}>
                     <td>{users.id}</td>
                     <td>{users.nombre}</td>
-                    <td>{users.apellidos}</td>
+                    <td>{users.apellido}</td>
                     <td>{users.edad}</td>
-                    <td>{users.fecha_de_nacimiento}</td>
+                    <td>
+                      {new Date(users.fecha_de_nacimiento).toLocaleDateString()}
+                    </td>
                     <td>{users.direccion}</td>
                     <td>{users.grupo}</td>
-                    <td>{users.fecha_de_registro}</td>
+                    <td>
+                      {new Date(users.fecha_de_registro).toLocaleDateString()}
+                    </td>
                     <td>
                       <button>Enviar link de pago</button>
                     </td>
                     <td>
                       <button>
-                        <Link to={"/edit"}>Editar alumno</Link>
+                        <Link to={`/edit/${users.id}`}>Editar alumno</Link>
                       </button>
                       <button onClick={() => handleDeleteBellydance(users.id)}>
                         eliminar
@@ -128,14 +121,22 @@ function Home() {
                   <tr key={users.id}>
                     <td>{users.id}</td>
                     <td>{users.nombre}</td>
+                    <td>{users.apellido}</td>
                     <td>{users.edad}</td>
+                    <td>
+                      {new Date(users.fecha_de_nacimiento).toLocaleDateString()}
+                    </td>
+                    <td>{users.direccion}</td>
                     <td>{users.grupo}</td>
+                    <td>
+                      {new Date(users.fecha_de_registro).toLocaleDateString()}
+                    </td>
                     <td>
                       <button>Enviar link de pago</button>
                     </td>
                     <td>
                       <button>
-                        <Link to={"/edit"}>Editar alumno</Link>
+                        <Link to={`/edit/${users.id}`}>Editar alumno</Link>
                       </button>
                       <button onClick={() => handleDeleteFolklore(users.id)}>
                         eliminar
