@@ -23,8 +23,6 @@ function Edit() {
   const location = useLocation();
   const alumnoid = location.pathname.split("/")[2];
 
-  console.log(1);
-
   async function editar(e) {
     e.preventDefault();
     try {
