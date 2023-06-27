@@ -1,0 +1,18 @@
+
+@use './components/home';
+@use './components/add';
+@use './components/edit';
+
+//variables
+//paleta de colores
+$color1 : #5A1A7B;
+$color2 : #ffffff;
+
+
+
+
+html, body {
+   
+    font-family: 'Poppins', sans-serif;
+    margin: 20px;
+}

@@ -1,0 +1,39 @@
+
+.home-container {
+        width: 100%;
+        height: auto;
+              padding: 10px;
+        border-radius: 10px;
+    
+        div {
+        width: 15%;
+        height: auto;
+                display: flex;
+        flex-direction: column;
+        
+
+        button {
+            margin-bottom: 10px;
+      }
+        }
+
+        table {
+            margin-top: 20px;
+        }
+
+      .home-container__btn{
+        color: #ffffff;
+        text-decoration: none;
+        }
+
+        .editarbtn-spacing {
+           margin-right: 5px;
+        }
+
+        .editarbtn{
+            color: #ffffff;
+        text-decoration: none;
+        }
+
+}
+

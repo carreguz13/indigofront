@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import "../App.css";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -52,14 +51,15 @@ function Home() {
   }
 
   return (
-    <div className="main">
+    <div className="home-container">
       <div>
-        <div className="search-bar">
-          <button>
-            <Link to={"/add"}>Registar alumno</Link>
-          </button>
-        </div>
+        <button type="button" className="btn btn-primary">
+          <Link className="home-container__btn" to={"/add"}>
+            Registar alumno
+          </Link>
+        </button>
         <select
+          className="form-select"
           value={select}
           onChange={(e) => {
             setselect(e.target.value);
@@ -68,87 +68,101 @@ function Home() {
           <option value="bellyDance">bellyDance</option>
           <option value="folklore">folklore</option>
         </select>
-        <table className="tabla">
-          <thead>
-            <tr>
-              <th>Id</th>
-              <th>Nombre</th>
-              <th>Apellido</th>
-              <th>Edad</th>
-              <th>Fecha de nacimiento</th>
-              <th>Dirección</th>
-              <th>Grupo</th>
-              <th>Fecha de registro</th>
-              <th>Pago</th>
-              <th>Editar/Elimianr</th>
-            </tr>
-          </thead>
-          <tbody>
-            {select === "bellyDance" && (
-              <>
-                {bellydance.map((users) => (
-                  <tr key={users.id}>
-                    <td>{users.id}</td>
-                    <td>{users.nombre}</td>
-                    <td>{users.apellido}</td>
-                    <td>{users.edad}</td>
-                    <td>
-                      {new Date(users.fecha_de_nacimiento).toLocaleDateString()}
-                    </td>
-                    <td>{users.direccion}</td>
-                    <td>{users.grupo}</td>
-                    <td>
-                      {new Date(users.fecha_de_registro).toLocaleDateString()}
-                    </td>
-                    <td>
-                      <button>Enviar link de pago</button>
-                    </td>
-                    <td>
-                      <button>
-                        <Link to={`/edit/${users.id}`}>Editar alumno</Link>
-                      </button>
-                      <button onClick={() => handleDeleteBellydance(users.id)}>
-                        eliminar
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </>
-            )}
-            {select === "folklore" && (
-              <>
-                {folklore.map((users) => (
-                  <tr key={users.id}>
-                    <td>{users.id}</td>
-                    <td>{users.nombre}</td>
-                    <td>{users.apellido}</td>
-                    <td>{users.edad}</td>
-                    <td>
-                      {new Date(users.fecha_de_nacimiento).toLocaleDateString()}
-                    </td>
-                    <td>{users.direccion}</td>
-                    <td>{users.grupo}</td>
-                    <td>
-                      {new Date(users.fecha_de_registro).toLocaleDateString()}
-                    </td>
-                    <td>
-                      <button>Enviar link de pago</button>
-                    </td>
-                    <td>
-                      <button>
-                        <Link to={`/edit/${users.id}`}>Editar alumno</Link>
-                      </button>
-                      <button onClick={() => handleDeleteFolklore(users.id)}>
-                        eliminar
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </>
-            )}
-          </tbody>
-        </table>
       </div>
+      <table className="table table-hover">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Edad</th>
+            <th>Fecha de nacimiento</th>
+            <th>Dirección</th>
+            <th>Grupo</th>
+            <th>Fecha de registro</th>
+            <th>Pago</th>
+            <th>Editar/Elimianr</th>
+          </tr>
+        </thead>
+        <tbody>
+          {select === "bellyDance" && (
+            <>
+              {bellydance.map((users) => (
+                <tr key={users.id}>
+                  <td>{users.id}</td>
+                  <td>{users.nombre}</td>
+                  <td>{users.apellido}</td>
+                  <td>{users.edad}</td>
+                  <td>
+                    {new Date(users.fecha_de_nacimiento).toLocaleDateString()}
+                  </td>
+                  <td>{users.direccion}</td>
+                  <td>{users.grupo}</td>
+                  <td>
+                    {new Date(users.fecha_de_registro).toLocaleDateString()}
+                  </td>
+                  <td>
+                    <button className="btn btn-success">
+                      Enviar link de pago
+                    </button>
+                  </td>
+                  <td>
+                    <button className="btn btn-warning editarbtn-spacing">
+                      <Link className="editarbtn" to={`/edit/${users.id}`}>
+                        Editar alumno
+                      </Link>
+                    </button>
+                    <button
+                      className="btn btn-danger"
+                      onClick={() => handleDeleteBellydance(users.id)}
+                    >
+                      eliminar
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </>
+          )}
+          {select === "folklore" && (
+            <>
+              {folklore.map((users) => (
+                <tr key={users.id}>
+                  <td>{users.id}</td>
+                  <td>{users.nombre}</td>
+                  <td>{users.apellido}</td>
+                  <td>{users.edad}</td>
+                  <td>
+                    {new Date(users.fecha_de_nacimiento).toLocaleDateString()}
+                  </td>
+                  <td>{users.direccion}</td>
+                  <td>{users.grupo}</td>
+                  <td>
+                    {new Date(users.fecha_de_registro).toLocaleDateString()}
+                  </td>
+                  <td>
+                    <button className="btn btn-success">
+                      Enviar link de pago
+                    </button>
+                  </td>
+                  <td>
+                    <button className="btn btn-warning editarbtn-spacing">
+                      <Link className="editarbtn" to={`/edit/${users.id}`}>
+                        Editar alumno
+                      </Link>
+                    </button>
+                    <button
+                      className="btn btn-danger"
+                      onClick={() => handleDeleteFolklore(users.id)}
+                    >
+                      eliminar
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </>
+          )}
+        </tbody>
+      </table>
     </div>
   );
 }

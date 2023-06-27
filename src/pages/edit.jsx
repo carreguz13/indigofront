@@ -1,6 +1,5 @@
 import { useState } from "react";
 import React from "react";
-import "../App.css";
 import axios from "axios";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
@@ -41,7 +40,7 @@ function Edit() {
   }
 
   return (
-    <div className="main-newRegister">
+    <div className="edit-container">
       <form className="form-new">
         <div>
           <h1>
